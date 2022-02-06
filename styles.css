@@ -1,0 +1,85 @@
+* {
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: rgb(27, 27, 27);
+}
+
+.title {
+    width: 500px;
+    text-align: center;
+    border-bottom: solid 2px rgb(129, 131, 132);
+}
+
+.message-container {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-container p {
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0;
+}
+
+.game-container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grid-container {
+    width: 400px;
+    margin-bottom: 50px;
+}
+
+.grid-container div {
+    display: flex;
+}
+
+.grid-container .tile {
+    font-size: 2.5rem;
+    width: 70px;
+    height: 70px;
+    border: 2px solid rgb(82, 87, 90);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+}
+
+.keyboard-container {
+    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.keyboard-container button {
+    width: 40px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(129, 131, 132);
+    margin: 4px;
+    cursor: pointer;
+}
+
+.keyboard-container button:hover {
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.keyboard-container button:nth-child(11) {
+    margin-left: 30px;
+}
+
+.keyboard-container button:nth-child(20),
+.keyboard-container button:nth-child(28) {
+    width: 70px;
+}
