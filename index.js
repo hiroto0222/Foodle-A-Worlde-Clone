@@ -14,6 +14,7 @@ const messageDisplay = document.querySelector(".message-container");
 let curr_row = 0;
 let curr_tile = 0;
 let isGameActive = true;
+let keyboardColors = {};
 
 
 // KEYBOARD
@@ -92,6 +93,7 @@ document.addEventListener("keydown", (e) => {
 
 KEYS.map((key) => {
     const key_btn = document.createElement("button");
+    keyboardColors[key] = "rgb(129, 131, 132)";
     key_btn.textContent = key;
     key_btn.setAttribute("id", key);
     key_btn.addEventListener("click", () => handleKeyClick(key));
@@ -127,6 +129,14 @@ guess_grid.map((row, i) => {
 
 let messageActive = false;
 const showMessage = (message, color = "rgb(129, 131, 132)") => {
+    if (!isGameActive) {
+        const message_ele = document.createElement("p");
+        message_ele.textContent = message;
+        message_ele.style.backgroundColor = color;
+        messageDisplay.append(message_ele);
+        return;
+    }
+    
     if (!messageActive) {
         messageActive = true;
         const message_ele = document.createElement("p");
@@ -143,10 +153,21 @@ const showMessage = (message, color = "rgb(129, 131, 132)") => {
 
 const flipTiles = () => {
     const tiles = document.querySelector("#row-idx-" + curr_row);
-    console.log("curr-tile: ", tiles);
     tiles.childNodes.forEach((tile, i) => {
         const letter = tile.getAttribute("data");
-        tile.style.backgroundColor = getColor(letter, i);
+        const color = getColor(letter, i);
+        tile.style.backgroundColor = color;
+        updateKeyboardColor(letter, color);
+    });
+    flipKeyboard();
+};
+
+
+const flipKeyboard = () => {
+    const keyboard = document.querySelector(".keyboard-container");
+    keyboard.childNodes.forEach((button) => {
+        let letter = button.id;
+        button.style.backgroundColor = keyboardColors[letter];
     });
 };
 
@@ -164,4 +185,13 @@ const getColor = (letter, i) => {
     } else {
         return "rgb(58, 58, 60)";
     }
+};
+
+
+const updateKeyboardColor = (letter, color) => {
+    // if color is green do nothing
+    if (keyboardColors[letter] === "rgb(83, 141, 78)") {
+        return;
+    }
+    keyboardColors[letter] = color;
 };
